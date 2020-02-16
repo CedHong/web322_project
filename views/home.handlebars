@@ -1,0 +1,32 @@
+<div id="home">
+    <div id="promotion">
+    </div>
+    <h1 id="cat_header">Categories</h1>
+    <section id="categories">
+        {{#each category}}
+        <div class="categories">
+            <h1>
+                {{this.title}}
+            </h1>
+            <img class="cat_img" src="{{this.picture}}" alt="not working" />
+            <a href="/" class="cat_link">Explore</a>
+        </div>
+        {{/each}}
+    </section>
+    <h1 id="sellers_header">Best Sellers</h1>
+    <section id="best_selling">
+        {{#each bestsellers}}
+        {{#if this.best_seller}}
+        <div class="best_sellers">
+            <img class="best_sell_img" src="{{this.picture}}" alt="not working" />
+            <p>
+                Product : {{this.title}}
+            </p>
+            <p>
+                Price : {{this.price}}
+            </p>
+        </div>
+        {{/if}}
+        {{/each}}
+    </section>
+</div>

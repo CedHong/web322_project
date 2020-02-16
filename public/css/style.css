@@ -1,0 +1,196 @@
+#head{
+
+    background-image: url("/img/logo.jpg");
+    background-size:50%;
+    background-color: black;
+    background-repeat: no-repeat;
+    padding-top: 150px;
+    padding-bottom: 150px;
+    background-position: center center;
+    margin: 0;
+
+}
+
+nav{
+
+  background-color: royalblue;
+  display: grid;
+  grid-auto-flow: column;
+  color: black;
+  text-align: center;
+  padding-top: auto;
+  padding-bottom: auto;
+  margin-top: 0;
+  
+} 
+
+
+
+nav a{
+
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  font-size: 24pt;
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+}
+
+#promotion{
+
+  background-image: url("/img/promo.jpg");
+  background-size:20%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+}
+
+#categories{
+
+  display: grid;
+  grid-template-columns:  auto auto auto auto;
+  position: relative;
+  
+}
+
+footer{
+  
+  text-align: center;
+  width: 100%;
+  bottom:0;
+  background-color: grey;
+
+}
+
+div.forms{
+
+  display: block;
+  text-align: center;
+  border-radius: 5px;
+  background: orange;
+
+}
+
+input[type=submit] {
+
+  background-color: red;
+  color: white;
+
+
+}
+
+
+#products_list{
+
+  display: grid;
+  grid-template-columns:  auto auto auto;
+  margin: 0 auto;
+  padding: 20px;
+  width: 80%;
+}
+
+.listings{
+
+  border: 1px solid rgba(0, 0, 0, 0.8);
+
+}
+
+div.categories{
+
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  display: grid;
+  grid-auto-flow: column;
+
+}
+
+section#categories h1{
+
+  text-align: center;
+
+
+}
+
+#sellers_header{
+
+  text-align: center;
+
+}
+
+#cat_header{
+
+  text-align: center;
+
+}
+
+div.best_sellers{
+
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  display: grid;
+  
+
+}
+
+#best_selling{
+
+  display: grid;
+  grid-template-columns:  auto auto auto auto;
+
+}
+
+div.forms{
+
+  width: 360px;
+  padding: 8% 0 0;
+  padding-bottom: 30%;
+  margin: auto;
+
+}
+
+.listings img{
+
+  width: auto;
+  height: 342px;
+
+
+}
+
+.categories img{
+
+  width: auto;
+  height: 342px;
+
+}
+
+.best_sellers img{
+
+  align-items: center;
+  width: auto;
+  height: 342px;
+
+}
+
+.social_media{
+
+  width: auto;
+  height: 50px;
+
+}
+
+footer ul{
+
+  list-style-type: none;
+  display:inline;
+
+}
+
+.foot{
+
+  display: grid;
+  grid-template-columns:  auto auto ;
+
+} 
+
+.social{
+
+  position: relative;
+
+}

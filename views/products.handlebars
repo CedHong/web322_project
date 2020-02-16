@@ -1,0 +1,21 @@
+<section id="products_list">
+    {{#each products}}
+    <div class="listings">
+        <img src = "{{this.picture}}" alt="not working"/>
+        <p>
+            {{this.title}}
+        </p>
+        <p>
+            Price : {{this.price}}
+        </p>
+        <p>
+            Description : {{this.description}}
+        </p>
+        {{#if this.best_seller}}
+         <p>
+             Best Seller
+         </p>
+         {{/if}}
+    </div>
+    {{/each}}
+</section>
