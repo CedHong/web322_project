@@ -1,4 +1,4 @@
-<div class ="forms">
+<div class="forms">
     <section id="registration">
         {{#each errormessage}}
         <div>
@@ -9,13 +9,27 @@
 
         <form action="/registration" method="POST">
             <label for="r_user_id">Your Username</label><br>
-            <input id="registration_id" type="text" name="registration_id"></input><br>
+            <input id="registration_id" type="text" name="registration_id" value={{this.registration_id}}></input><br>
+            {{#if error1}}
+            <p>{{error1}}</p>
+            {{/if}}
             <label for="email">Email</label><br>
-            <input id="email" type="text" name="email" }></input><br>
+            <input id="email" type="text" name="email" value={{this.email}}></input><br>
+            {{#if error2}}
+            <p>{{error2}}</p>
+            {{/if}}
             <label for="password">Password</label><br>
-            <input id="password" type="password" name="password" }></input><br>
+            <input id="password" type="password" name="password" value={{this.password}}></input><br>
+            {{#if error3}}
+            {{#each error3}}
+            <p>{{this}}</p>
+            {{/each}}
+            {{/if}}
             <label for="c_password">Confirm Password</label><br>
-            <input id="c_password" type="password" name="c_password" }></input><br>
+            <input id="c_password" type="password" name="c_password" value={{this.c_password}}></input><br>
+            {{#if error4}}
+            <p>{{error4}}</p>
+            {{/if}}
             <input type="submit" value="Create Account">
         </form>
     </section>

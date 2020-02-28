@@ -1,10 +1,16 @@
-<div class ="forms">
+<div class="forms">
     <section class="login">
         <form action="/login" method="POST">
             <label for="l_user_id">Your Username</label><br>
-            <input id="l_user_id" type="text" name="l_user_id"></input><br>
-             <label for="password">Password</label><br>
-            <input id="password" type="text" name="password" }></input><br>
+            <input id="l_user_id" type="text" name="l_user_id" value={{this.l_user_id}}></input><br>
+            {{#if msg_1}}
+            <p>{{msg_1}}</p>
+            {{/if}}
+            <label for="password">Password</label><br>
+            <input id="password" type="password" name="password" value={{this.password}}></input><br>
+            {{#if msg_2}}
+            <p>{{msg_2}}</p>
+            {{/if}}
             <input type="submit" value="Sign in">
         </form>
     </section>
