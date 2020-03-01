@@ -11,6 +11,18 @@
 
 }
 
+#products_list{
+
+  text-align: center;
+
+}
+
+header{
+
+  width: auto;
+
+}
+
 nav{
 
   background-color: royalblue;
@@ -24,7 +36,11 @@ nav{
   
 } 
 
+.best_sellers{
 
+  text-align: center;
+
+}
 
 nav a{
 
@@ -35,12 +51,20 @@ nav a{
 
 }
 
-#promotion{
+.best_sell_img{
 
-  background-image: url("/img/promo.jpg");
-  background-size:20%;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+
+}
+
+
+#promotion img{
+
+  width:100%;
+  height:150px;
 
 }
 
@@ -98,7 +122,7 @@ div.categories{
 
   border: 1px solid rgba(0, 0, 0, 0.8);
   display: grid;
-  grid-auto-flow: column;
+  grid-auto-flow: auto auto auto auto;
 
 }
 
@@ -129,7 +153,7 @@ div.best_sellers{
 
 }
 
-#best_selling{
+.best_selling{
 
   display: grid;
   grid-template-columns:  auto auto auto auto;
@@ -148,6 +172,7 @@ div.forms{
 .listings img{
 
   width: auto;
+  max-width: 100%;
   height: 342px;
 
 
@@ -155,16 +180,25 @@ div.forms{
 
 .categories img{
 
-  width: auto;
-  height: 342px;
+  align-items: center;
+  max-width: 100%;
+  height: 250px;
+  width: auto
+
+}
+
+.categories a{
+
+  text-align: center;
 
 }
 
 .best_sellers img{
 
   align-items: center;
-  width: auto;
-  height: 342px;
+  max-width: 100%;
+  height: 250px;
+  width: auto
 
 }
 
@@ -192,5 +226,64 @@ footer ul{
 .social{
 
   position: relative;
+
+}
+
+p.error{
+
+  color: red;
+
+}
+
+
+@media only screen and (max-width: 500px) {
+
+
+  #promotion img{
+
+    display: none;
+  
+  }
+
+  #categories{
+
+    display: grid;
+    grid-template-columns:  auto;
+    position: relative;
+    
+  }
+
+  #categories img{
+
+    display: none;
+
+  }
+
+  nav a{
+
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    font-size: 12px;
+  
+  }
+
+  .best_selling{
+
+    display: flex;
+    flex-direction: column;
+
+  }
+  
+  #products_list{
+
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .social{
+
+    display: none;
+
+  }
 
 }

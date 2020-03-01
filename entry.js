@@ -76,7 +76,7 @@ app.post("/registration", (req, res) => {
 
     let error3 = [];
 
-    let error4 = "";
+    let error4 = [];
 
     let num_errors = 0;
 
@@ -93,6 +93,14 @@ app.post("/registration", (req, res) => {
         num_errors++;
 
         error2 += "Please enter an email";
+
+    }
+
+    if(password ==""){
+
+        num_errors++;
+
+        error3.push("Please enter a password");
 
     }
 
@@ -113,11 +121,19 @@ app.post("/registration", (req, res) => {
 
     }
 
+    if(c_password ==""){
+
+        num_errors++;
+
+        error4.push("Please re-enter your password");
+
+    }
+
     if (c_password != password) {
 
         num_errors++;
 
-        error4 += "Passwords must match";
+        error4.push("Passwords must match");
 
     }
 
@@ -154,11 +170,10 @@ app.post("/registration", (req, res) => {
         sgMail.send(msg)
         .then(()=>{
 
-            res.render("home", {
-                title: "Home",
-                header: "Home",
-                category: sections.getData(),
-                bestsellers: data.getData()
+            res.render("dashboard", {
+                title: "Dashboard",
+                header: "Dashboard",
+                user: registration_id
             });
         })
         .catch(err=>{

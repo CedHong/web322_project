@@ -1,5 +1,6 @@
 <div id="home">
     <div id="promotion">
+        <img src="/img/promo.jpg" alt="banner">
     </div>
     <h1 id="cat_header">Categories</h1>
     <section id="categories">
@@ -14,7 +15,7 @@
         {{/each}}
     </section>
     <h1 id="sellers_header">Best Sellers</h1>
-    <section id="best_selling">
+    <div class="best_selling">
         {{#each bestsellers}}
         {{#if this.best_seller}}
         <div class="best_sellers">
@@ -28,5 +29,5 @@
         </div>
         {{/if}}
         {{/each}}
-    </section>
+    </div>
 </div>
