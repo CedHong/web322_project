@@ -42,6 +42,13 @@ nav{
 
 }
 
+.product_text{
+
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+
 nav a{
 
   border: 1px solid rgba(0, 0, 0, 0.8);
@@ -81,7 +88,7 @@ footer{
   text-align: center;
   width: 100%;
   bottom:0;
-  background-color: grey;
+  background-color: lightblue;
 
 }
 
@@ -157,6 +164,16 @@ div.best_sellers{
 
   display: grid;
   grid-template-columns:  auto auto auto auto;
+
+}
+
+.cat_img{
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+
 
 }
 
@@ -236,6 +253,39 @@ p.error{
 }
 
 
+@media only screen and (max-width: 900px){
+
+  #categories{
+
+    display: grid;
+    grid-template-columns:  auto auto;
+    position: relative;
+    
+  }
+  
+  .best_selling{
+
+    display: grid;
+    grid-template-columns:  auto auto;
+  
+  }
+
+
+  #products_list{
+
+    display: grid;
+    grid-template-columns: auto  auto;
+
+  }
+
+  .social{
+
+    margin: auto;
+
+  }
+
+}
+
 @media only screen and (max-width: 500px) {
 
 
@@ -280,10 +330,18 @@ p.error{
 
   }
 
-  .social{
+  .foot{
 
-    display: none;
+    display: flex;
+    flex-direction: column;
 
   }
 
+  /* .social{
+
+    display: none;
+
+  } */
+
 }
+

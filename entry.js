@@ -84,7 +84,7 @@ app.post("/registration", (req, res) => {
 
         num_errors++;
 
-        error1 += "Please enter a UserName";
+        error1 += "Please enter a User Name";
 
     }
 
@@ -104,11 +104,11 @@ app.post("/registration", (req, res) => {
 
     }
 
-    if (password.match(/^[A-Za-z0-9]+$/) == null) {
+    if (password.match(/^[A-Za-z]+$/) == null || password.match(/^[0-9]+$/) == null) {
 
         num_errors++;
 
-        error3.push("Password should only contain numbers and letters");
+        error3.push("Password should ONLY contain numbers AND letters");
 
     }
 
