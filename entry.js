@@ -102,24 +102,28 @@ app.post("/registration", (req, res) => {
 
         error3.push("Please enter a password");
 
+    }else{
+
+        if (password.match(/^[A-Za-z]+$/) == null || password.match(/^[0-9]+$/) == null) {
+
+            num_errors++;
+    
+            error3.push("Password should ONLY contain numbers AND letters");
+    
+        }
+    
+        if (password.length < 6) {
+    
+            num_errors++;
+    
+    
+            error3.push("Password should should be at least 6 characters long");
+    
+        }
+
     }
 
-    if (password.match(/^[A-Za-z]+$/) == null || password.match(/^[0-9]+$/) == null) {
 
-        num_errors++;
-
-        error3.push("Password should ONLY contain numbers AND letters");
-
-    }
-
-    if (password.length < 6) {
-
-        num_errors++;
-
-
-        error3.push("Password should should be at least 6 characters long");
-
-    }
 
     if(c_password ==""){
 
