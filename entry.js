@@ -84,7 +84,7 @@ app.post("/registration", (req, res) => {
 
         num_errors++;
 
-        error1 += "Please enter a User Name";
+        error1 += "Please enter a user name";
 
     }
 
