@@ -75,6 +75,12 @@ nav a{
 
 }
 
+.dash{
+
+  text-align: center;
+
+}
+
 #categories{
 
   display: grid;
@@ -92,12 +98,18 @@ footer{
 
 }
 
-div.forms{
+.forms{
 
-  display: block;
+  width: auto;
   text-align: center;
   border-radius: 5px;
   background: orange;
+
+}
+
+form{
+
+  width: auto;
 
 }
 
@@ -312,7 +324,7 @@ p.error{
   nav a{
 
     border: 1px solid rgba(0, 0, 0, 0.8);
-    font-size: 12px;
+    font-size: 18px;
   
   }
 

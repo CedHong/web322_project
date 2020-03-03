@@ -28,7 +28,9 @@
             <label for="c_password">Confirm Password</label><br>
             <input id="c_password" type="password" name="c_password" value={{this.c_password}}></input><br>
             {{#if error4}}
-            <p class="error">{{error4}}</p>
+            {{#each error4}}
+            <p class="error">{{this}}</p>
+            {{/each}}
             {{/if}}
             <input type="submit" value="Create Account">
         </form>

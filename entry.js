@@ -104,7 +104,7 @@ app.post("/registration", (req, res) => {
 
     }else{
 
-        if (password.match(/^[A-Za-z]+$/) == null || password.match(/^[0-9]+$/) == null) {
+        if ( (password.match(/^[a-zA-Z]*$/) != null || password.match(/^[0-9]*$/) != null) || password.match(/^[a-zA-Z0-9]*$/) == null ) {
 
             num_errors++;
     
