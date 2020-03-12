@@ -4,13 +4,9 @@ const exphbs = require("express-handlebars");
 
 const bodyParser = require("body-parser");
 
+const mongoose = require('mongoose');
+
 const app = express();
-
-const data = require("./model/products");
-
-const sections = require("./model/categories");
-
-const best_sellers = require("./model/bestseller");
 
 const generalRoutes = require("./controllers/General");
 
@@ -30,15 +26,6 @@ app.use("/", generalRoutes);
 
 app.use("/", formRoutes);
 
-
-
-
-
-
-
-
-
-
 app.get("/dashboard", (req, res) => {
 
     res.render("dashboard", {
@@ -50,13 +37,16 @@ app.get("/dashboard", (req, res) => {
 });
 
 
-
-
+mongoose.connect(process.env.MONGO_DB_URL, {useNewUrlParser: true, useUnifiedTopology: true})
+.then(()=>{
+    console.log(`Connection to database was successful`)
+})
+.catch(err=>console.log(`Error while connecting to a mongDB ${err}`))
 
 
 app.listen(PORT, () => {
 
-    console.log("Server Connect");
+    console.log("Connection success");
 
 
 })
