@@ -8,27 +8,32 @@
         {{/each}}
 
         <form action="/registration" method="POST">
-            <label for="r_user_id">Your Username</label><br>
-            <input id="registration_id" type="text" name="registration_id" value={{this.registration_id}}></input><br>
+            <label for="r_user_id">First Name</label><br>
+            <input id="registration_id" type="text" name="first_name" value={{this.first_name}}></input><br>
             {{#if error1}}
             <p class="error">{{error1}}</p>
             {{/if}}
+            <label for="r_user_id">Last Name</label><br>
+            <input id="registration_id" type="text" name="last_name" value={{this.last_name}}></input><br>
+            {{#if error2}}
+            <p class="error">{{error2}}</p>
+            {{/if}}
             <label for="email">Email</label><br>
             <input id="email" type="text" name="email" value={{this.email}}></input><br>
-            {{#if error2}}
+            {{#if error3}}
             <p class="error">{{error2}}</p>
             {{/if}}
             <label for="password">Password</label><br>
             <input id="password" type="password" name="password" value={{this.password}}></input><br>
-            {{#if error3}}
-            {{#each error3}}
+            {{#if error4}}
+            {{#each error4}}
             <p class="error">{{this}}</p>
             {{/each}}
             {{/if}}
             <label for="c_password">Confirm Password</label><br>
             <input id="c_password" type="password" name="c_password" value={{this.c_password}}></input><br>
-            {{#if error4}}
-            {{#each error4}}
+            {{#if error5}}
+            {{#each error5}}
             <p class="error">{{this}}</p>
             {{/each}}
             {{/if}}
