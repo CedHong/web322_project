@@ -6,11 +6,13 @@ const bodyParser = require("body-parser");
 
 const mongoose = require('mongoose');
 
-const app = express();
+
 
 const generalRoutes = require("./controllers/General");
 
 const formRoutes = require("./controllers/Forms")
+
+const app = express();
 
 //load environment variables for keys
 require('dotenv').config({path:"./config/keys.env"});
@@ -42,6 +44,7 @@ mongoose.connect(process.env.MONGO_DB_URL, {useNewUrlParser: true, useUnifiedTop
     console.log(`Connection to database was successful`)
 })
 .catch(err=>console.log(`Error while connecting to a mongDB ${err}`))
+
 
 
 app.listen(PORT, () => {

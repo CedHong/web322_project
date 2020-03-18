@@ -1,5 +1,8 @@
 const express = require('express')
+const bcrypt = require('bcryptjs');
 const router = express.Router();
+const userModel = require('../model/User');
+const salt = bcrypt.genSaltSync(10);
 
 router.get("/registration", (req, res) => {
 
@@ -124,27 +127,56 @@ router.post("/registration", (req, res) => {
 
     } else {
 
+        bcrypt.hash( req.body.password, salt, (err, hash) =>{
+            if(err){
+    
+                console.log(`Error: ${err}`);
+        
+            }
 
-        const sgMail = require('@sendgrid/mail');
-        sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
-        const msg = {
-            to: `${email}`,
-            from: `chong12@myseneca.ca`,
-            subject: 'Web322 Assignment',
-            html: `Welcome ${req.body.first_name}. Registration was Successful`,
-        };
+            const newUser = {
+
+                firstName: req.body.first_name,
+                lastName : req.body.last_name,
+                email : req.body.email,
+                password : hash
+        
+            };
+
+            const user = new userModel(newUser);
+            user.save() //Async method
+            .then(()=>{
+        
+                const sgMail = require('@sendgrid/mail');
+                sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
+                const msg = {
+                    to: `${email}`,
+                    from: `chong12@myseneca.ca`,
+                    subject: 'Web322 Assignment',
+                    html: `Welcome ${req.body.first_name}. Registration was Successful`,
+                };
+        
+        
+                sgMail.send(msg)
+                .then(()=>{
+        
+                    res.redirect("/dashboard");
+                })
+                .catch(err=>{
+        
+                    console.log(`Error sending email: ${{err}}`)
+        
+                })
+        
+            })
+            .catch(err=>console.log(`Error occured when inserting data into the Task collection ${err}`))
+
+    
+        });
 
 
-        sgMail.send(msg)
-        .then(()=>{
 
-            res.redirect("/dashboard");
-        })
-        .catch(err=>{
 
-            console.log(`Error ${{err}}`)
-
-        })
 
     }
 
