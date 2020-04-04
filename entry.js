@@ -6,27 +6,45 @@ const bodyParser = require("body-parser");
 
 const mongoose = require('mongoose');
 
-
-
 const generalRoutes = require("./controllers/General");
 
-const formRoutes = require("./controllers/Forms")
+const registerRoutes = require("./controllers/Registration");
+
+const loginRoutes = require("./controllers/Login");
+
+const session = require('express-session')
 
 const app = express();
 
 //load environment variables for keys
-require('dotenv').config({path:"./config/keys.env"});
+require('dotenv').config({ path: "./config/keys.env" });
 
 app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(express.static("public"));
+app.use(express.static("public"));//path for public folder
+
+app.use(session({ secret: `${process.env.SECRET}` }));
+
+app.use((req, res, next) =>{
+
+
+    //create global template varable and assign the session
+
+    res.locals.user = req.session.userInfo;
+
+    next();
+
+});
+
 
 const PORT = process.env.PORT;
 
 app.use("/", generalRoutes);
 
-app.use("/", formRoutes);
+app.use("/", registerRoutes);
+
+app.use("/", loginRoutes);
 
 app.get("/dashboard", (req, res) => {
 
@@ -39,11 +57,11 @@ app.get("/dashboard", (req, res) => {
 });
 
 
-mongoose.connect(process.env.MONGO_DB_URL, {useNewUrlParser: true, useUnifiedTopology: true})
-.then(()=>{
-    console.log(`Connection to database was successful`)
-})
-.catch(err=>console.log(`Error while connecting to a mongDB ${err}`))
+mongoose.connect(process.env.MONGO_DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+        console.log(`Connection to database was successful`)
+    })
+    .catch(err => console.log(`Error while connecting to a mongDB ${err}`))
 
 
 

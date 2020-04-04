@@ -16,8 +16,18 @@
         <nav>
             <a href="/">Home</a>
             <a href="/products">Products</a>
-            <a href="/registration">Registration</a>
-            <a href="/login">Login</a>
+
+            {{#if user}}
+
+                <a href="/dashboard">Dashboard</a>
+                <a href="/logout">Logout</a>
+
+            {{else}}
+
+                <a href="/registration">Registration</a>
+                <a href="/login">Login</a>
+
+            {{/if}}
         </nav>
     </header>
     {{{body}}}

@@ -3,8 +3,6 @@ const router = express.Router();
 
 const sections = require("../model/categories");
 
-const best_sellers = require("../model/bestseller");
-
 const data = require("../model/products");
 
 router.get("/", (req, res) => {
@@ -29,65 +27,20 @@ router.get("/products", (req, res) => {
 
 });
 
-router.get("/login", (req, res) => {
+router.get("/dashboard", (req, res)=>{
 
-    res.render("login", {
-        title: "Login",
-        header: "Login"
-    });
+    res.render("dashboard");
 
 });
 
-router.post("/login", (req, res) => {
+router.get("/logout", (req, res) => {
 
-    const { l_user_id, password } = req.body;
+    req.session.destroy();
 
-    let error1 = "";
-
-    let error2 = "";
-
-    let num_errors = 0;
-
-    if (l_user_id == "") {
-
-        num_errors++;
-
-        error1 = "Please enter a username";
-
-    }
-
-    if (password == "") {
-
-        num_errors++;
-
-        error2 = "Please enter a password";
-
-    }
-
-    if (num_errors > 0) {
-
-        res.render("login", {
-            title: "Login",
-            header: "Login",
-            l_user_id: req.body.l_user_id,
-            password: req.body.password,
-            msg_1: error1,
-            msg_2: error2
-        });
+    res.redirect("/login");
 
 
-    } else {
 
-        res.render("home", {
-            title: "Home",
-            header: "Home",
-            category: sections.getData(),
-            bestsellers: data.getData()
-        });
+})
 
-    }
-
-
-});
-
-module.exports=router;
+module.exports = router;
