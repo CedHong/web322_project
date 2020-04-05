@@ -1,68 +1,67 @@
-const products =
-{
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs')
+const Schema = mongoose.Schema;
 
-    data:[],
+const productSchema = new Schema({
 
-    init(){
+    name:
+    {
+        type: String,
+        required: true
+    },
+    price:
+    {
 
-        this.data.push({
-            title:'Sony A7III',
-            description:`Sony camera`,
-            price:`$3000.00`,  
-            picture:"/img/camera.jpeg",
-            best_seller: true
-        });
-        
-        this.data.push({
-            title:'USB Type C Cable',
-            description:`USB Cable for USB type C`,
-            price:`$9.99`,  
-            picture:"/img/cable.jpeg",
-            best_seller: false
-        });
-
-        this.data.push({
-            title:'Messenger Bag',
-            description:`Stylist Messenger Bag for everyday`,
-            price:`$269.99`,  
-            picture:"/img/messenger_bag.jpeg",
-            best_seller: false
-        });
-
-        this.data.push({
-            title:'Wing Zero',
-            description:`Gundam Model Kit, great for all ages`,
-            price:`$35.99`,  
-            picture:"/img/wing_zero.jpeg",
-            best_seller: true
-        });
-
-        this.data.push({
-            title:'Final Fantasy 7 Remake',
-            description:`Remake of the Legendary game: Final Fantasy 7`,
-            price:`$70.99`,  
-            picture:"/img/video_game.jpeg",
-            best_seller: true
-        });
-
-        this.data.push({
-            title: 'SD Card',
-            description:`64GB SD card`,
-            price:`$31.99`,  
-            picture:"/img/sd_card.jpeg",
-            best_seller: true
-        });
+        type: Number,
+        required: true
 
     },
+    description:
+    {
+        type: String,
+        required: true,
 
-    getData(){
-
-        return this.data;
 
     },
+    quantity:
+    {
+
+        type: Number,
+        required: true
+
+    },
+    bestseller:
+    {
+
+        type: Boolean,
+        default: false
+
+    },
+    picture:
+    {
+
+        type: String
+
+    },
+    userId:
+    {
+
+        type: String
 
 
-}
+    },
+    dateCreated:
+    {
+        type: Date,
+        default: Date.now()
+    }
 
-products.init();
-module.exports=products;
+
+
+})
+
+
+const Product = mongoose.model('product', productSchema);
+
+
+module.exports = Product;

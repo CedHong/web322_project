@@ -3,7 +3,7 @@ const router = express.Router();
 
 const sections = require("../model/categories");
 
-const data = require("../model/products");
+const data = require("../model/temp_products");
 
 router.get("/", (req, res) => {
 

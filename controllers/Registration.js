@@ -134,35 +134,76 @@ router.post("/registration", (req, res) => {
 
         };
 
-        const user = new userModel(newUser);
-        user.save() //Async method
-            .then((user) => {
-
-                const sgMail = require('@sendgrid/mail');
-                sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
-                const msg = {
-                    to: `${email}`,
-                    from: `chong12@myseneca.ca`,
-                    subject: 'Web322 Assignment',
-                    html: `Welcome ${req.body.first_name}. Registration was Successful`,
-                };
+        userModel.findOne({ email: req.body.email })
+        .then((check_user)=>{
 
 
-                sgMail.send(msg)
-                    .then(() => {
+            if(check_user == null){
 
-                        req.session.userInfo = user;
-
-                        res.redirect("/dashboard");
+                const user = new userModel(newUser);
+                user.save() //Async method
+                    .then((user) => {
+        
+                        const sgMail = require('@sendgrid/mail');
+                        sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
+                        const msg = {
+                            to: `${email}`,
+                            from: `chong12@myseneca.ca`,
+                            subject: 'Web322 Assignment',
+                            html: `Welcome ${req.body.first_name}. Registration was Successful`,
+                        };
+        
+        
+                        sgMail.send(msg)
+                            .then(() => {
+        
+                                req.session.userInfo = user;
+        
+                                res.redirect("/dashboard");
+                            })
+                            .catch(err => {
+        
+                                console.log(`Error sending email: ${{ err }}`)
+        
+                            })
+        
                     })
-                    .catch(err => {
+                    .catch(err => console.log(`Error occured when inserting new user into the user collection ${err}`));
 
-                        console.log(`Error sending email: ${{ err }}`)
 
-                    })
 
-            })
-            .catch(err => console.log(`Error occured when inserting data into the Task collection ${err}`));
+
+
+
+
+            }else{
+
+                res.render("registration", {
+                    title: "Registration",
+                    header: "Registration",
+                    first_name: req.body.first_name,
+                    last_name: req.body.last_name,
+                    email: req.body.email,
+                    password: req.body.password,
+                    c_password: req.body.c_password,
+                    email_error: "Sorry but that email is already registered in our system"
+        
+                });
+
+
+
+
+            }
+
+
+
+
+
+
+        })
+        .catch(err => console.log(`Error occured when checking for existing from the user collection ${err}`));
+
+
 
 
 
