@@ -47,11 +47,11 @@ const PORT = process.env.PORT;
 
 app.use("/", generalRoutes);
 
-app.use("/", registerRoutes);
+// app.use("/", registerRoutes);
 
-app.use("/", loginRoutes);
+// app.use("/", loginRoutes);
 
-app.use("/", productRoutes);
+// app.use("/", productRoutes);
 
 app.get("/dashboard", (req, res) => {
 
