@@ -12,6 +12,10 @@ const registerRoutes = require("./controllers/Registration");
 
 const loginRoutes = require("./controllers/Login");
 
+const productRoutes = require("./controllers/Products");
+
+const fileUpload = require('express-fileupload');
+
 const session = require('express-session')
 
 const app = express();
@@ -37,6 +41,7 @@ app.use((req, res, next) =>{
 
 });
 
+app.use(fileUpload());
 
 const PORT = process.env.PORT;
 
@@ -45,6 +50,8 @@ app.use("/", generalRoutes);
 app.use("/", registerRoutes);
 
 app.use("/", loginRoutes);
+
+app.use("/", productRoutes);
 
 app.get("/dashboard", (req, res) => {
 

@@ -1,0 +1,25 @@
+<section id="products_list">
+    {{#each products}}
+    <div class="listings">
+        <img src="uploads/{{this.productPic}}" class="product_img" alt="not working" />
+        <div class="product_text">
+            <h3>
+                {{this.productName}}
+            </h3>
+            <p>
+                Price : {{this.price}}
+            </p>
+            <p>
+                Description : {{this.description}}
+            </p>
+            {{#if this.bestseller}}
+            <h4>
+                Best Seller
+            </h4>
+            {{/if}}
+            <a href="">Edit Product</a>
+
+        </div>
+    </div>
+    {{/each}}
+</section>

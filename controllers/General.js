@@ -5,6 +5,8 @@ const sections = require("../model/categories");
 
 const data = require("../model/temp_products");
 
+const authetication = require("../middleware/authetication");
+
 router.get("/", (req, res) => {
 
     res.render("home", {
@@ -27,7 +29,7 @@ router.get("/products", (req, res) => {
 
 });
 
-router.get("/dashboard", (req, res)=>{
+router.get("/dashboard", authetication, (req, res)=>{
 
     res.render("dashboard");
 

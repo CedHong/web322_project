@@ -1,25 +1,29 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs')
 const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
 
-    name:
+    productName:
     {
         type: String,
-        required: true
+        //required: true
     },
     price:
     {
 
         type: Number,
-        required: true
+        //required: true
+
+    },
+    category:{
+
+        type: String
 
     },
     description:
     {
         type: String,
-        required: true,
+        //required: true,
 
 
     },
@@ -27,7 +31,7 @@ const productSchema = new Schema({
     {
 
         type: Number,
-        required: true
+       // required: true
 
     },
     bestseller:
@@ -37,18 +41,11 @@ const productSchema = new Schema({
         default: false
 
     },
-    picture:
+    productPic:
     {
-
-        type: String
-
-    },
-    userId:
-    {
-
-        type: String
-
-
+        type:String,
+        default:"not working"
+        
     },
     dateCreated:
     {
