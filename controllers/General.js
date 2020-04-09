@@ -106,6 +106,49 @@ router.get("/logout", (req, res) => {
 
 })
 
+
+router.get("/:category", (req, res)=>{
+
+    productModel.find({category: req.params.category})
+    .then((products)=>{
+
+        const filteredproducts = products.map(product=>{
+
+
+            return {
+
+                id : product._id,
+                productName: product.productName,
+                price: product.price,
+                description: product.description,
+                productPic: product.productPic,
+                quantity: product.quantity,
+                bestseller: product.bestseller
+
+            }
+
+
+
+        });
+
+        res.render("products",{
+
+            title: "Products",
+            header: "Products",
+            products: filteredproducts
+
+
+        });
+
+
+
+
+    })
+    .catch(err => console.log(`Error occured when finding products for a specific category(home page) ${err}`));
+
+
+});
+
 router.post("/searchproducts", (req, res)=>{
 
     productModel.find({category: req.body.category})
