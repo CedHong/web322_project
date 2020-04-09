@@ -1,28 +1,20 @@
     
     
-    <h1>Please enter the information for your Product</h1>
-    <form method="POST" action="/addproducts" enctype="multipart/form-data">
+    <h1>Edit the Information for the Selected Product</h1>
+    <form method="POST" action="/updateproduct/{{_id}}?method=PUT" >
 
         <label>Product Name</label>
         <input type="text" name="productName" id="productName" value="{{productName}}"> <br><br>
-        {{#if error1}}
-            <p class="error">{{error1}}</p>
-        {{/if}}
+
         <label>Price $</label>
-        <input type="number" placeholder="0.00" step="0.01"  name="price" id="price" value="{{price}}"> <br><br>
-        {{#if error2}}
-            <p class="error">{{error2}}</p>
-        {{/if}}
+        <input type="number" placeholder="0.00" step="0.01"  name="price" id="price" value="{{price}}" > <br><br>
+
         <label>Description</label><br>
         <textarea id="description" name="description">{{description}}</textarea><br><br>
-        {{#if error3}}
-            <p class="error">{{error3}}</p>
-        {{/if}}
+        
         <label>Quantity</label>
         <input type="number" placeholder="0" step="1"  name="quantity" id="quantity" value="{{quantity}}"> <br><br>
-        {{#if error4}}
-            <p class="error">{{error4}}</p>
-        {{/if}}
+
         <label>Category</label>
         <select name="category" id="category">
             <option value="general">General</option>
@@ -38,14 +30,8 @@
             <option value="true">Yes</option>     
         </select>    
          <br><br>
-        
-        <label>Picture</label>
-        <input type="file" name="productPic" id="productPic">
-        {{#if error5}}
-            <p class="error">{{error5}}</p>
-        {{/if}}
-        <br><br>
+    
 
-        <input type="submit"  value="Add Product">
+        <input type="submit" value="Update Product">
 
     </form>

@@ -6,13 +6,13 @@ const productSchema = new Schema({
     productName:
     {
         type: String,
-        //required: true
+        required: true
     },
     price:
     {
 
         type: Number,
-        //required: true
+        required: true
 
     },
     category:{
@@ -23,7 +23,7 @@ const productSchema = new Schema({
     description:
     {
         type: String,
-        //required: true,
+        required: true,
 
 
     },
@@ -31,7 +31,7 @@ const productSchema = new Schema({
     {
 
         type: Number,
-       // required: true
+        required: true
 
     },
     bestseller:

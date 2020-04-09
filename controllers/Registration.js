@@ -110,7 +110,7 @@ router.post("/registration", (req, res) => {
         res.render("registration", {
             title: "Registration",
             header: "Registration",
-            first_name: req.body.first_name,
+            first_name: first_name,
             last_name: req.body.last_name,
             email: req.body.email,
             password: req.body.password,
@@ -119,6 +119,7 @@ router.post("/registration", (req, res) => {
             error2: error2,
             error3: error3,
             error4: error4,
+            error5: error5
 
         });
 
@@ -172,10 +173,6 @@ router.post("/registration", (req, res) => {
 
 
 
-
-
-
-
             }else{
 
                 res.render("registration", {
@@ -196,16 +193,8 @@ router.post("/registration", (req, res) => {
             }
 
 
-
-
-
-
         })
         .catch(err => console.log(`Error occured when checking for existing from the user collection ${err}`));
-
-
-
-
 
 
 

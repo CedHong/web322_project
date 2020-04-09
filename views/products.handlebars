@@ -1,18 +1,33 @@
+    <form method="POST" action="/searchproducts">
+        <label>Search by Category</label>
+        <br>
+        <select name="category" id="category">
+            <option value="general">General</option>
+            <option value="electronics">Electronics</option>
+            <option value="clothing">Clothing</option>
+            <option value="books">Books</option>   
+        </select>
+        <br>
+
+        <input type="submit" value="Search Products">    
+
+    </form>
+
 <section id="products_list">
     {{#each products}}
     <div class="listings">
-        <img src="{{this.picture}}" class="product_img" alt="not working" />
+        <img src="uploads/{{this.productPic}}"  class="product_img" alt="not working" />
         <div class="product_text">
             <h3>
-                {{this.title}}
+                {{this.productName}}
             </h3>
             <p>
-                Price : {{this.price}}
+                Price : ${{this.price}}
             </p>
             <p>
                 Description : {{this.description}}
             </p>
-            {{#if this.best_seller}}
+            {{#if this.bestseller}}
             <h4>
                 Best Seller
             </h4>
