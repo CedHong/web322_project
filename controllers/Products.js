@@ -33,7 +33,7 @@ router.post("/addproducts", (req, res) => {
 
     let num_errors = 0;
 
-    const{productName, price, description, quantity, category, bestseller} = req.body;
+    const { productName, price, description, quantity, category, bestseller } = req.body;
 
     if (productName == "") {
 
@@ -49,7 +49,7 @@ router.post("/addproducts", (req, res) => {
 
         error2 += "Please enter a price";
 
-    }else if(price <= 0){
+    } else if (price <= 0) {
 
         num_errors++;
 
@@ -71,7 +71,7 @@ router.post("/addproducts", (req, res) => {
 
         error4 += "Please enter a quantity";
 
-    }else if(quantity < 0){
+    } else if (quantity < 0) {
 
         num_errors++;
 
@@ -80,14 +80,14 @@ router.post("/addproducts", (req, res) => {
     }
 
 
-    if(req.files.productPic.mimetype != "image/jpeg"){
+    if (req.files.productPic.mimetype != "image/jpeg") {
 
         num_errors++;
         error5 += "Please only upload an image"
 
     }
 
-    if(num_errors > 0){
+    if (num_errors > 0) {
 
         res.render("addproducts", {
 
@@ -104,11 +104,11 @@ router.post("/addproducts", (req, res) => {
             error3,
             error4,
             error5
-       
+
         })
 
 
-    }else{
+    } else {
 
         const newProduct = {
 
@@ -118,41 +118,41 @@ router.post("/addproducts", (req, res) => {
             quantity,
             category,
             bestseller,
-    
+
         };
-    
+
         const product = new productModel(newProduct);
-    
-    
-    
+
+
+
         product.save()
-        .then((product)=>{
-    
-            req.files.productPic.name = `product_pic_${product._id}${req.files.productPic.name}`
-    
-    
-            productModel.updateOne({_id: product._id}, {
-    
-    
-                productPic: req.files.productPic.name 
-    
-    
+            .then((product) => {
+
+                req.files.productPic.name = `product_pic_${product._id}${req.files.productPic.name}`
+
+
+                productModel.updateOne({ _id: product._id }, {
+
+
+                    productPic: req.files.productPic.name
+
+
+                })
+                    .then(() => {
+
+                        res.redirect("/addproducts");
+
+
+                    })
+                    .catch(err => console.log(`Error occured when updating image name in the product collection ${err}`));
+
+                req.files.productPic.mv(`public/uploads/${req.files.productPic.name}`)
+
+
+
+
             })
-            .then(()=>{
-    
-                res.redirect("/addproducts");
-    
-    
-            })
-            .catch(err => console.log(`Error occured when updating image name in the product collection ${err}`));
-            
-            req.files.productPic.mv(`public/uploads/${req.files.productPic.name}`)
-    
-            
-    
-    
-        })
-        .catch(err => console.log(`Error occured when inserting new product into the product collection ${err}`));
+            .catch(err => console.log(`Error occured when inserting new product into the product collection ${err}`));
 
 
 
@@ -164,105 +164,105 @@ router.post("/addproducts", (req, res) => {
 
 });
 
-router.get("/listproducts", authetication, authorization, (req, res)=>{
+router.get("/listproducts", authetication, authorization, (req, res) => {
 
     productModel.find()
-    .then((products)=>{
+        .then((products) => {
 
 
-        const filteredproducts = products.map(product=>{
+            const filteredproducts = products.map(product => {
 
 
-            return {
+                return {
 
-                id : product._id,
-                productName: product.productName,
-                price: product.price,
-                description: product.description,
-                productPic: product.productPic,
-                quantity: product.quantity,
-                bestseller: product.bestseller
+                    id: product._id,
+                    productName: product.productName,
+                    price: product.price,
+                    description: product.description,
+                    productPic: product.productPic,
+                    quantity: product.quantity,
+                    bestseller: product.bestseller
 
-            }
-
-
-
-        });
-
-        res.render("listproducts",{
-
-            products: filteredproducts
-
-
-        });
+                }
 
 
 
+            });
 
-    })
-    .catch(err => console.log(`Error occured when finding all product from product collection ${err}`));
+            res.render("listproducts", {
 
-
-
-});
+                products: filteredproducts
 
 
-router.get("/editproduct/:id", authetication, authorization, (req, res)=>{
+            });
 
-    productModel.findById(req.params.id)
-    .then((product)=>{
 
-        const { _id, productName, price, category, description, quantity, bestseller, productPic, dateCreated} = product;
-
-        res.render("editproducts", {
-
-            _id,
-            productName,
-            price,
-            category,
-            description,
-            quantity,
-            bestseller,
-            productPic,
-            dateCreated
 
 
         })
-
-
-    })
-    .catch(err => console.log(`Error occured when finding product to edit: ${err}`));
-
-
-router.put("/updateproduct/:id", (req, res)=>{
-
-    const product = {
-
-        productName: req.body.productName,
-        price: req.body.price,
-        description: req.body.description,
-        quantity: req.body.quantity,
-        category: req.body.category,
-        bestseller: req.body.bestseller,
-
-    };
-
-    productModel.updateOne({_id: req.params.id}, product)
-    .then(()=>{
-
-
-        res.redirect("/listproducts");
-
-
-
-    })
-    .catch(err => console.log(`Error occured when updating product: ${err}`));
-
-
+        .catch(err => console.log(`Error occured when finding all product from product collection ${err}`));
 
 
 
 });
+
+
+router.get("/editproduct/:id", authetication, authorization, (req, res) => {
+
+    productModel.findById(req.params.id)
+        .then((product) => {
+
+            const { _id, productName, price, category, description, quantity, bestseller, productPic, dateCreated } = product;
+
+            res.render("editproducts", {
+
+                _id,
+                productName,
+                price,
+                category,
+                description,
+                quantity,
+                bestseller,
+                productPic,
+                dateCreated
+
+
+            })
+
+
+        })
+        .catch(err => console.log(`Error occured when finding product to edit: ${err}`));
+
+
+    router.put("/updateproduct/:id", (req, res) => {
+
+        const product = {
+
+            productName: req.body.productName,
+            price: req.body.price,
+            description: req.body.description,
+            quantity: req.body.quantity,
+            category: req.body.category,
+            bestseller: req.body.bestseller,
+
+        };
+
+        productModel.updateOne({ _id: req.params.id }, product)
+            .then(() => {
+
+
+                res.redirect("/listproducts");
+
+
+
+            })
+            .catch(err => console.log(`Error occured when updating product: ${err}`));
+
+
+
+
+
+    });
 
 
 

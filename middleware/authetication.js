@@ -1,12 +1,12 @@
-const autheticationCheck = (req, res, next)=> {
+const autheticationCheck = (req, res, next) => {
 
-    if(req.session.userInfo){
-        
+    if (req.session.userInfo) {
+
 
         next();
 
 
-    }else{
+    } else {
 
         res.redirect("/login");
 

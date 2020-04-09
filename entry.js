@@ -14,6 +14,8 @@ const loginRoutes = require("./controllers/Login");
 
 const productRoutes = require("./controllers/Products");
 
+const shopRoutes = require("./controllers/shop");
+
 const fileUpload = require('express-fileupload');
 
 const session = require('express-session')
@@ -63,23 +65,16 @@ app.use((req, res, next) => {
 
 })
 
-app.use("/", generalRoutes);
-
 app.use("/", registerRoutes);
 
 app.use("/", loginRoutes);
 
 app.use("/", productRoutes);
 
-app.get("/dashboard", (req, res) => {
+app.use("/", shopRoutes);
 
-    res.render("dashboard", {
-        title: "Dashboard",
-        header: "Dashboard",
-        first_name: "user"
-    });
+app.use("/", generalRoutes);
 
-});
 
 
 mongoose.connect(process.env.MONGO_DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })

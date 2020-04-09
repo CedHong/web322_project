@@ -15,9 +15,10 @@ const productSchema = new Schema({
         required: true
 
     },
-    category:{
+    category: {
 
-        type: String
+        type: String,
+        required: true
 
     },
     description:
@@ -43,9 +44,9 @@ const productSchema = new Schema({
     },
     productPic:
     {
-        type:String,
-        default:"not working"
-        
+        type: String,
+        default: "not working"
+
     },
     dateCreated:
     {

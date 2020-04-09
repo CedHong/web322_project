@@ -16,7 +16,9 @@
 <section id="products_list">
     {{#each products}}
     <div class="listings">
-        <img src="uploads/{{this.productPic}}"  class="product_img" alt="not working" />
+        <a href="/buyproduct/{{this.id}}">
+            <img src="/uploads/{{this.productPic}}"  class="product_img" alt="not working" />
+        </a>
         <div class="product_text">
             <h3>
                 {{this.productName}}

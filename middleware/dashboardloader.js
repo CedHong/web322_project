@@ -1,17 +1,19 @@
-const dashBoardLoader = (req, res)=> {
+const dashBoardLoader = (req, res) => {
 
-    if(req.session.userInfo.role == "clerk"){
+    if (req.session.userInfo.role == "clerk") {
 
         res.render("admindash", {
             title: "Admin Dashboard",
-            header: "Admin Dashboard"});
+            header: "Admin Dashboard"
+        });
 
 
-    }else{
+    } else {
 
         res.render("dashboard", {
             title: "User Dashboard",
-            header: "User Dashboard"});
+            header: "User Dashboard"
+        });
 
     }
 

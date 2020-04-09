@@ -14,41 +14,41 @@ router.get("/", (req, res) => {
 
 
 
-    productModel.find({bestseller : true})
-    .then((products)=>{
+    productModel.find({ bestseller: true })
+        .then((products) => {
 
 
-        const filteredproducts = products.map(product=>{
+            const filteredproducts = products.map(product => {
 
 
-            return {
+                return {
 
-                id : product._id,
-                productName: product.productName,
-                price: product.price,
-                description: product.description,
-                productPic: product.productPic,
-                quantity: product.quantity,
-                bestseller: product.bestseller
+                    id: product._id,
+                    productName: product.productName,
+                    price: product.price,
+                    description: product.description,
+                    productPic: product.productPic,
+                    quantity: product.quantity,
+                    bestseller: product.bestseller
 
-            }
-
-
-
-        });
-
-        res.render("home", {
-            title: "Home",
-            header: "Home",
-            category: sections.getData(),
-            bestsellers: filteredproducts
-        });
+                }
 
 
 
+            });
 
-    })
-    .catch(err => console.log(`Error occured when finding all product from product collection for the home page ${err}`));
+            res.render("home", {
+                title: "Home",
+                header: "Home",
+                category: sections.getData(),
+                bestsellers: filteredproducts
+            });
+
+
+
+
+        })
+        .catch(err => console.log(`Error occured when finding all product from product collection for the home page ${err}`));
 
 
 });
@@ -56,41 +56,41 @@ router.get("/", (req, res) => {
 router.get("/products", (req, res) => {
 
     productModel.find()
-    .then((products)=>{
+        .then((products) => {
 
 
-        const filteredproducts = products.map(product=>{
+            const filteredproducts = products.map(product => {
 
 
-            return {
+                return {
 
-                id : product._id,
-                productName: product.productName,
-                price: product.price,
-                description: product.description,
-                productPic: product.productPic,
-                quantity: product.quantity,
-                bestseller: product.bestseller
+                    id: product._id,
+                    productName: product.productName,
+                    price: product.price,
+                    description: product.description,
+                    productPic: product.productPic,
+                    quantity: product.quantity,
+                    bestseller: product.bestseller
 
-            }
-
-
-
-        });
-
-        res.render("products", {
-            title: "Products",
-            header: "Products",
-            products: filteredproducts
-        });
+                }
 
 
 
+            });
 
-    })
-    .catch(err => console.log(`Error occured when finding all product from product collection for the products page ${err}`));
+            res.render("products", {
+                title: "Products",
+                header: "Products",
+                products: filteredproducts
+            });
 
-    
+
+
+
+        })
+        .catch(err => console.log(`Error occured when finding all product from product collection for the products page ${err}`));
+
+
 
 });
 
@@ -107,88 +107,88 @@ router.get("/logout", (req, res) => {
 })
 
 
-router.get("/:category", (req, res)=>{
+router.post("/searchproducts", (req, res) => {
 
-    productModel.find({category: req.params.category})
-    .then((products)=>{
-
-        const filteredproducts = products.map(product=>{
+    productModel.find({ category: req.body.category })
+        .then((products) => {
 
 
-            return {
-
-                id : product._id,
-                productName: product.productName,
-                price: product.price,
-                description: product.description,
-                productPic: product.productPic,
-                quantity: product.quantity,
-                bestseller: product.bestseller
-
-            }
+            const filteredproducts = products.map(product => {
 
 
+                return {
 
-        });
+                    id: product._id,
+                    productName: product.productName,
+                    price: product.price,
+                    description: product.description,
+                    productPic: product.productPic,
+                    quantity: product.quantity,
+                    bestseller: product.bestseller
 
-        res.render("products",{
-
-            title: "Products",
-            header: "Products",
-            products: filteredproducts
-
-
-        });
+                }
 
 
 
+            });
 
-    })
-    .catch(err => console.log(`Error occured when finding products for a specific category(home page) ${err}`));
+            res.render("products", {
+
+                title: "Products",
+                header: "Products",
+                products: filteredproducts
+
+
+            });
+
+
+
+
+        })
+        .catch(err => console.log(`Error occured when finding all product from product collection ${err}`));
+
 
 
 });
 
-router.post("/searchproducts", (req, res)=>{
+router.get("/search/:category", (req, res) => {
 
-    productModel.find({category: req.body.category})
-    .then((products)=>{
+    productModel.find({ category: req.params.category })
+        .then((products) => {
 
-
-        const filteredproducts = products.map(product=>{
-
-
-            return {
-
-                id : product._id,
-                productName: product.productName,
-                price: product.price,
-                description: product.description,
-                productPic: product.productPic,
-                quantity: product.quantity,
-                bestseller: product.bestseller
-
-            }
+            const filteredproducts = products.map(product => {
 
 
+                return {
 
-        });
+                    id: product._id,
+                    productName: product.productName,
+                    price: product.price,
+                    description: product.description,
+                    productPic: product.productPic,
+                    quantity: product.quantity,
+                    bestseller: product.bestseller
 
-        res.render("products",{
-
-            title: "Products",
-            header: "Products",
-            products: filteredproducts
-
-
-        });
+                }
 
 
 
+            });
 
-    })
-    .catch(err => console.log(`Error occured when finding all product from product collection ${err}`));
+            res.render("products", {
 
+                title: "Products",
+                header: "Products",
+                products: filteredproducts
+
+
+            });
+
+
+
+
+        })
+        .catch(err => console.log(`Error occured when finding products for a specific category(home page) ${err}`));
 
 
 });

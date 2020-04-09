@@ -1,12 +1,12 @@
-const isInventoryClerk = (req, res, next)=> {
+const isInventoryClerk = (req, res, next) => {
 
-    if(req.session.userInfo.role == "clerk"){
+    if (req.session.userInfo.role == "clerk") {
 
-        
+
         next();
 
 
-    }else{
+    } else {
 
         res.redirect("/dashboard");
 
