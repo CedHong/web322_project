@@ -177,6 +177,7 @@ router.get("/listproducts", authetication, authorization, (req, res) => {
 
                     id: product._id,
                     productName: product.productName,
+                    category: product.category,
                     price: product.price,
                     description: product.description,
                     productPic: product.productPic,
@@ -212,7 +213,7 @@ router.get("/editproduct/:id", authetication, authorization, (req, res) => {
     productModel.findById(req.params.id)
         .then((product) => {
 
-            const { _id, productName, price, category, description, quantity, bestseller, productPic, dateCreated } = product;
+            const { _id, productName, price, category, description, quantity, bestseller, productPic } = product;
 
             res.render("editproducts", {
 
@@ -223,8 +224,7 @@ router.get("/editproduct/:id", authetication, authorization, (req, res) => {
                 description,
                 quantity,
                 bestseller,
-                productPic,
-                dateCreated
+                productPic
 
 
             })
@@ -234,35 +234,48 @@ router.get("/editproduct/:id", authetication, authorization, (req, res) => {
         .catch(err => console.log(`Error occured when finding product to edit: ${err}`));
 
 
-    router.put("/updateproduct/:id", (req, res) => {
+});
 
-        const product = {
+router.put("/updateproduct/:id", (req, res) => {
 
-            productName: req.body.productName,
-            price: req.body.price,
-            description: req.body.description,
-            quantity: req.body.quantity,
-            category: req.body.category,
-            bestseller: req.body.bestseller,
+    const product = {
 
-        };
+        productName: req.body.productName,
+        price: req.body.price,
+        description: req.body.description,
+        quantity: req.body.quantity,
+        category: req.body.category,
+        bestseller: req.body.bestseller,
 
-        productModel.updateOne({ _id: req.params.id }, product)
-            .then(() => {
+    };
 
-
-                res.redirect("/listproducts");
-
+    productModel.updateOne({ _id: req.params.id }, product)
+        .then(() => {
 
 
-            })
-            .catch(err => console.log(`Error occured when updating product: ${err}`));
+            res.redirect("/listproducts");
 
 
 
+        })
+        .catch(err => console.log(`Error occured when updating product: ${err}`));
 
 
-    });
+});
+
+router.delete("/deleteproduct/:id", (req, res) => {
+
+    productModel.deleteOne({ _id: req.params.id })
+        .then(() => {
+
+
+            res.redirect("/listproducts");
+
+
+        })
+        .catch(err => console.log(`Error occured when deleting product: ${err}`));
+
+
 
 
 

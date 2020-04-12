@@ -17,17 +17,17 @@
 
         <label>Category</label>
         <select name="category" id="category">
-            <option value="general">General</option>
-            <option value="electronics">Electronics</option>
-            <option value="clothing">Clothing</option>
-            <option value="books">Books</option>   
+            <option value="general" {{#equal category "general" "selected"}}  {{/equal}}>General</option>
+            <option value="electronics" {{#equal category "electronics" "selected"}}  {{/equal}}>Electronics</option>
+            <option value="clothing" {{#equal category "clothing" "selected"}}  {{/equal}}>Clothing</option>
+            <option value="books" {{#equal category "books" "selected"}}  {{/equal}}>Books</option>   
         </select>    
          <br><br>
 
          <label>Best Seller</label>
         <select name="bestseller" id="bestseller">
             <option value="false">No</option>
-            <option value="true">Yes</option>     
+            <option value="true" {{#if bestseller}} selected {{/if}}>Yes</option>     
         </select>    
          <br><br>
     

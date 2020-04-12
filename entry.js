@@ -25,14 +25,37 @@ const app = express();
 //load environment variables for keys
 require('dotenv').config({ path: "./config/keys.env" });
 
-app.engine("handlebars", exphbs());
+app.engine("handlebars", exphbs(
+
+    {
+        helpers: {
+
+            equal: function (value1, value2, option) {
+
+                let string = "";
+
+                if (value1 == value2) {
+
+                    string = option
+                }
+
+                return string;
+
+            }
+
+        }
+    }
+
+
+
+));
 app.set("view engine", "handlebars");
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static("public"));//path for public folder
 
 app.use(session({ secret: `${process.env.SECRET}` }));
 
-app.use((req, res, next) =>{
+app.use((req, res, next) => {
 
 
     //create global template varable and assign the session
@@ -65,6 +88,8 @@ app.use((req, res, next) => {
 
 })
 
+app.use("/", generalRoutes);
+
 app.use("/", registerRoutes);
 
 app.use("/", loginRoutes);
@@ -73,7 +98,7 @@ app.use("/", productRoutes);
 
 app.use("/", shopRoutes);
 
-app.use("/", generalRoutes);
+
 
 
 

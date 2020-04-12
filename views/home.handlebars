@@ -18,7 +18,9 @@
     <div class="best_selling">
         {{#each bestsellers}}
         <div class="best_sellers">
-            <img class="best_sell_img" src="uploads/{{this.productPic}}" alt="not working" />
+            <a href="/buyproduct/{{this.id}}">
+                <img class="best_sell_img" src="uploads/{{this.productPic}}" alt="not working" />
+            </a>
             <p>
                 Product : {{this.productName}}
             </p>
