@@ -2,6 +2,9 @@ const express = require('express')
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const userModel = require('../model/User');
+const cart = require('../model/shoppingcart');
+
+const Cart = cart.Cart;
 
 router.get("/login", (req, res) => {
 
@@ -78,10 +81,14 @@ router.post("/login", (req, res) => {
 
                                 req.session.userInfo = user;
 
+                                req.session.cart = new Cart();
+
                                 res.redirect("/dashboard");
 
 
                             } else {
+
+                                
 
                                 res.render("login", {
                                     title: "Login",

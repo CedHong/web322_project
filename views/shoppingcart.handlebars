@@ -1,0 +1,27 @@
+<section id="products_listing">
+    {{#if cart.price}}
+    {{#each cart.items}}
+    <div class="listings">
+        <div class="product_text">
+            <h3>
+                {{this.item.productName}}
+            </h3>
+            <img src="/uploads/{{this.item.productPic}}" class="product_img" alt="not working" />
+            <p>
+                Price : {{this.price}}
+            </p>
+            <p>
+                Description : {{this.quantity}}
+            </p>
+            <a href="/removeitem/{{this.item._id}}">Remove Item</a>
+        </div>
+    </div>
+    {{/each}}
+    <p>Price:  {{cart.price}}</p>
+    <form method="POST" action="/placeorder">
+        <input type="submit"  value="Place Order">
+    </form>
+    {{else}}
+    <h1>Your Cart is Empty</h1>
+    {{/if}}
+</section>

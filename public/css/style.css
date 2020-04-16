@@ -164,6 +164,12 @@ section#categories h1{
 
 }
 
+h1{
+
+  text-align: center;
+
+}
+
 div.best_sellers{
 
   border: 1px solid rgba(0, 0, 0, 0.8);

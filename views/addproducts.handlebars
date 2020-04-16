@@ -1,15 +1,16 @@
     
     
-    <h1>Please enter the information for your Product</h1>
+<h1>Please enter the information for your Product</h1>
+<div class="forms">
     <form method="POST" action="/addproducts" enctype="multipart/form-data">
 
-        <label>Product Name</label>
+        <label>Product Name</label><br>
         <input type="text" name="productName" id="productName" value="{{productName}}"> <br><br>
         {{#if error1}}
             <p class="error">{{error1}}</p>
         {{/if}}
-        <label>Price $</label>
-        <input type="number" placeholder="0.00" step="0.01"  name="price" id="price" value="{{price}}"> <br><br>
+        <label>Price($)</label><br>
+        <input type="number" placeholder="0.00" min="0.00" step="0.01"  name="price" id="price" value="{{price}}"> <br><br>
         {{#if error2}}
             <p class="error">{{error2}}</p>
         {{/if}}
@@ -18,12 +19,12 @@
         {{#if error3}}
             <p class="error">{{error3}}</p>
         {{/if}}
-        <label>Quantity</label>
-        <input type="number" placeholder="0" step="1"  name="quantity" id="quantity" value="{{quantity}}"> <br><br>
+        <label>Quantity</label><br>
+        <input type="number" placeholder="0" step="1" min="0" name="quantity" id="quantity" value="{{quantity}}"> <br><br>
         {{#if error4}}
             <p class="error">{{error4}}</p>
         {{/if}}
-        <label>Category</label>
+        <label>Category</label><br>
         <select name="category" id="category">
             <option value="general">General</option>
             <option value="electronics">Electronics</option>
@@ -32,14 +33,14 @@
         </select>    
          <br><br>
 
-         <label>Best Seller</label>
+         <label>Best Seller</label><br>
         <select name="bestseller" id="bestseller">
             <option value="false">No</option>
             <option value="true">Yes</option>     
         </select>    
          <br><br>
         
-        <label>Picture</label>
+        <label>Picture</label><br>
         <input type="file" name="productPic" id="productPic">
         {{#if error5}}
             <p class="error">{{error5}}</p>
@@ -49,3 +50,4 @@
         <input type="submit"  value="Add Product">
 
     </form>
+</div>

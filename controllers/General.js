@@ -11,9 +11,6 @@ const dashBoardLoader = require("../middleware/dashboardloader");
 
 router.get("/", (req, res) => {
 
-
-
-
     productModel.find({ bestseller: true })
         .then((products) => {
 

@@ -18,7 +18,9 @@ const shopRoutes = require("./controllers/shop");
 
 const fileUpload = require('express-fileupload');
 
-const session = require('express-session')
+const session = require('express-session');
+
+const mongoStore = require('connect-mongo')(session);
 
 const app = express();
 
@@ -53,7 +55,20 @@ app.set("view engine", "handlebars");
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static("public"));//path for public folder
 
-app.use(session({ secret: `${process.env.SECRET}` }));
+
+mongoose.connect(process.env.MONGO_DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+        console.log(`Connection to database was successful`)
+    })
+    .catch(err => console.log(`Error while connecting to a mongDB ${err}`))
+
+app.use(session({ 
+    secret: `${process.env.SECRET}`,
+    store: new mongoStore({ 
+        mongooseConnection: mongoose.connection,
+        ttl: 24 * 60 * 60 //1 day for shopping cart
+    })
+}));
 
 app.use((req, res, next) => {
 
@@ -61,6 +76,8 @@ app.use((req, res, next) => {
     //create global template varable and assign the session
 
     res.locals.user = req.session.userInfo;
+
+    res.locals.cart = req.session.cart;
 
     next();
 
@@ -97,16 +114,6 @@ app.use("/", loginRoutes);
 app.use("/", productRoutes);
 
 app.use("/", shopRoutes);
-
-
-
-
-
-mongoose.connect(process.env.MONGO_DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => {
-        console.log(`Connection to database was successful`)
-    })
-    .catch(err => console.log(`Error while connecting to a mongDB ${err}`))
 
 
 
