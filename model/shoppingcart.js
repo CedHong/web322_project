@@ -21,25 +21,30 @@ class Cart {
 
     addItem(id, item, quantity, price) {
 
+        if(quantity > 0){
 
-        if (!(this.items.hasOwnProperty(id))) {
+            if (!(this.items.hasOwnProperty(id))) {
 
-            this.items[id] = { item: item, quantity: quantity, price: price };
+                this.items[id] = { item: item, quantity: quantity, price: price };
+    
+                this.price += this.items[id].price * this.items[id].quantity;
+    
+    
+    
+            } else {
+    
+    
+                this.items[id].quantity += quantity;
+    
+                this.price += this.items[id].price * quantity;
+    
+            }
+    
+            this.totalItems += quantity
 
-            this.price += this.items[id].price * this.items[id].quantity;
-
-
-
-        } else {
-
-
-            this.items[id].quantity += quantity;
-
-            this.price += this.items[id].price * quantity;
 
         }
 
-        this.totalItems += quantity
        
 
     }
@@ -83,7 +88,7 @@ class Cart {
 
             for (var id in this.items) {
 
-                order += `${this.items[id].item.productName} : ${this.items[id].quantity} <br>`
+                order += `${this.items[id].item.productName} : ${this.items[id].quantity} x ${this.items[id].price}<br>`
     
             }
     

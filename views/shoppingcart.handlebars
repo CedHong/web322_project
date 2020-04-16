@@ -1,23 +1,29 @@
 <section id="products_listing">
-    {{#if cart.price}}
+    {{#if cart.totalItems}}
     {{#each cart.items}}
     <div class="listings">
-        <div class="product_text">
-            <h3>
-                {{this.item.productName}}
-            </h3>
-            <img src="/uploads/{{this.item.productPic}}" class="product_img" alt="not working" />
-            <p>
-                Price : {{this.price}}
-            </p>
-            <p>
-                Description : {{this.quantity}}
-            </p>
-            <a href="/removeitem/{{this.item._id}}">Remove Item</a>
+        <div class="buypage">
+            <div>
+                <img src="/uploads/{{this.item.productPic}}" class="product_img" alt="not working" />
+            </div>
+            <div>
+                <h2>
+                    {{this.item.productName}}
+                </h2>
+                <p>
+                    Price : ${{#formatPrice this.price}} {{/formatPrice}}
+                </p>
+                <p>
+                    Quantity : {{this.quantity}}
+                </p>
+                <a href="/removeitem/{{this.item._id}}" class="button">Remove Item</a>
+
+            </div>
+
         </div>
     </div>
     {{/each}}
-    <p>Price:  {{cart.price}}</p>
+    <p>Total Price: ${{#formatPrice cart.price}} {{/formatPrice}}</p>
     <form method="POST" action="/placeorder">
         <input type="submit"  value="Place Order">
     </form>

@@ -1,5 +1,7 @@
+    
+<div class="searchproducts">
     <form method="POST" action="/searchproducts">
-        <label>Search by Category</label>
+        <h1>Search by Category</h1>
         <br>
         <select name="category" id="category">
             <option value="general">General</option>
@@ -12,7 +14,7 @@
         <input type="submit" value="Search Products">    
 
     </form>
-
+</div>
 <section id="products_list">
     {{#each products}}
     <div class="listings">
@@ -24,7 +26,7 @@
                 {{this.productName}}
             </h3>
             <p>
-                Price : ${{this.price}}
+                Price : ${{#formatPrice this.price}} {{/formatPrice}}
             </p>
             <p>
                 Description : {{this.description}}

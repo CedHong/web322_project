@@ -7,7 +7,7 @@
                 {{this.productName}}
             </h3>
             <p>
-                Price : {{this.price}}
+                Price : ${{#formatPrice this.price}} {{/formatPrice}}
             </p>
             <p>
                 Description : {{this.description}}
@@ -23,8 +23,8 @@
                 Best Seller
             </h4>
             {{/if}}
-            <a href="/editproduct/{{this.id}}">Edit Product</a><br>
-            <a href="/deleteproduct/{{this.id}}?method=DELETE">Delete Product</a>
+            <a href="/editproduct/{{this.id}}" class="button">Edit Product</a><br>
+            <a href="/deleteproduct/{{this.id}}?method=DELETE" class="button">Delete Product</a>
         </div>
     </div>
     {{/each}}

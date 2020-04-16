@@ -59,6 +59,10 @@ router.post("/addcart/:id",authetication, (req, res) => {
 
             req.session.cart = cart;
 
+            req.session.save();
+
+            console.log(req.session.cart);
+
             res.redirect("/continueshopping");
 
 
@@ -104,6 +108,8 @@ router.get("/removeitem/:id",authetication, (req, res) => {
 
     req.session.cart = cart;
 
+    req.session.save();
+
     res.redirect("/shoppingcart");
 
 
@@ -140,7 +146,7 @@ router.post("/placeorder",authetication, (req, res) => {
         
             req.session.cart = cart;
 
-            console.log(req.session.cart);
+            req.session.save();
 
             res.redirect("/dashboard");
         })

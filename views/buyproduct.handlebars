@@ -1,25 +1,28 @@
 <section id="products_listing">
     <div class="listings">
-        <img src="/uploads/{{productPic}}" class="product_img" alt="not working" />
+        <div class="buypage">
+        <div>
+            <img src="/uploads/{{productPic}}" class="product_img" alt="not working" />
+        </div>
+        <div>
         <div class="product_text">
             <h3>
                 {{productName}}
             </h3>
             <p>
-                Price : {{this.price}}
+                Price : ${{#formatPrice this.price}} {{/formatPrice}}
             </p>
             <p>
                 Description : {{description}}
             </p>
         </div>
-        <div>
         <form method="POST" action="/addcart/{{this._id}}">
             <label>Quantity</label>
             <input type="number" placeholder="0" step="1" min="0" max="{{quantity}}" name="quantity" id="quantity" > <br><br>
 
             <input type="submit"  value="Add to Cart">
         </form>
-        </div>
     </div>
-
+    </div>
+    </div>
 </section>

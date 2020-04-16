@@ -43,6 +43,12 @@ app.engine("handlebars", exphbs(
 
                 return string;
 
+            },
+
+
+            formatPrice: function(price) {
+                return price.toFixed(2);
+
             }
 
         }
