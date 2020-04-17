@@ -19,7 +19,7 @@ router.get("/addproducts", authetication, authorization, (req, res) => {
 });
 
 
-router.post("/addproducts", (req, res) => {
+router.post("/addproducts", authetication, authorization, (req, res) => {
 
     let error1 = "";
 
@@ -236,7 +236,7 @@ router.get("/editproduct/:id", authetication, authorization, (req, res) => {
 
 });
 
-router.put("/updateproduct/:id", (req, res) => {
+router.put("/updateproduct/:id", authetication, authorization, (req, res) => {
 
     const product = {
 
@@ -263,7 +263,7 @@ router.put("/updateproduct/:id", (req, res) => {
 
 });
 
-router.delete("/deleteproduct/:id", (req, res) => {
+router.delete("/deleteproduct/:id", authetication, authorization, (req, res) => {
 
     productModel.deleteOne({ _id: req.params.id })
         .then(() => {
