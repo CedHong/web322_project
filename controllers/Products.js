@@ -79,8 +79,13 @@ router.post("/addproducts", authetication, authorization, (req, res) => {
 
     }
 
+    if(req.files == null){
 
-    if (req.files.productPic.mimetype != "image/jpeg") {
+        num_errors++;
+        error5 += "Please upload image"
+
+
+    }else if (req.files.productPic.mimetype.includes("image") == false) {
 
         num_errors++;
         error5 += "Please only upload an image"
