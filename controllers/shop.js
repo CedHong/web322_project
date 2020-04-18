@@ -8,8 +8,6 @@ const authorization = require("../middleware/authorization");
 const Cart = cart.Cart;
 
 
-
-
 router.get("/buyproduct/:id", (req, res) => {
 
     productModel.findById(req.params.id)
@@ -37,11 +35,10 @@ router.get("/buyproduct/:id", (req, res) => {
         .catch(err => console.log(`Error occured when finding product for product desciption: ${err}`));
 
 
-
 })
 
 
-router.post("/addcart/:id",authetication, (req, res) => {
+router.post("/addcart/:id", authetication, (req, res) => {
 
 
     productModel.findById(req.params.id)
@@ -70,13 +67,10 @@ router.post("/addcart/:id",authetication, (req, res) => {
         .catch(err => console.log(`Error occured when finding product for shopping cart: ${err}`));
 
 
-
-
-
 })
 
 
-router.get("/continueshopping",authetication, (req, res) => {
+router.get("/continueshopping", authetication, (req, res) => {
 
     res.render("continueshopping", {
         title: "Continue Shopping",
@@ -86,7 +80,7 @@ router.get("/continueshopping",authetication, (req, res) => {
 
 })
 
-router.get("/shoppingcart",authetication, (req, res) => {
+router.get("/shoppingcart", authetication, (req, res) => {
 
 
     res.render("shoppingcart", {
@@ -98,7 +92,7 @@ router.get("/shoppingcart",authetication, (req, res) => {
 })
 
 
-router.get("/removeitem/:id",authetication, (req, res) => {
+router.get("/removeitem/:id", authetication, (req, res) => {
 
     let cart = new Cart();
 
@@ -115,7 +109,7 @@ router.get("/removeitem/:id",authetication, (req, res) => {
 
 })
 
-router.post("/placeorder",authetication, (req, res) => {
+router.post("/placeorder", authetication, (req, res) => {
 
 
     const sgMail = require('@sendgrid/mail');
@@ -141,9 +135,9 @@ router.post("/placeorder",authetication, (req, res) => {
             let cart = new Cart();
 
             cart.copy(req.session.cart);
-        
+
             cart.emptyCart();
-        
+
             req.session.cart = cart;
 
             req.session.save();
@@ -155,8 +149,6 @@ router.post("/placeorder",authetication, (req, res) => {
             console.log(`Error sending email for order: ${{ err }}`)
 
         })
-
-
 
 
 })

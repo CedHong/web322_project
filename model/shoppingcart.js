@@ -21,31 +21,31 @@ class Cart {
 
     addItem(id, item, quantity, price) {
 
-        if(quantity > 0){
+        if (quantity > 0) {
 
             if (!(this.items.hasOwnProperty(id))) {
 
                 this.items[id] = { item: item, quantity: quantity, price: price };
-    
+
                 this.price += this.items[id].price * this.items[id].quantity;
-    
-    
-    
+
+
+
             } else {
-    
-    
+
+
                 this.items[id].quantity += quantity;
-    
+
                 this.price += this.items[id].price * quantity;
-    
+
             }
-    
+
             this.totalItems += quantity
 
 
         }
 
-       
+
 
     }
 
@@ -68,7 +68,7 @@ class Cart {
 
         delete this.items[id];
 
-        if(this.price == 0){
+        if (this.price == 0) {
 
             this.items = {};
 
@@ -82,22 +82,21 @@ class Cart {
 
         let order = "";
 
-        if(this.price != 0){
+        let current_price = (this.price).toFixed(2);
 
-            order += "Your list of items : <br>"
+        if (this.quantity != 0) {
+
+            order += "Your order : <br>"
 
             for (var id in this.items) {
 
                 order += `${this.items[id].item.productName} : ${this.items[id].quantity} x ${this.items[id].price}<br>`
-    
+
             }
-    
-            order += `Final Price : ${this.price}`
+
+            order += `Final Price : $ ${current_price} <br> Thank you for using Happy Shop!`
 
         }
-
-
-
 
 
         return order;
