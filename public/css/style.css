@@ -1,7 +1,7 @@
 #head{
 
     background-image: url("/img/logo2.jpg");
-    background-size:50%;
+    background-size:contain;
     background-color: black;
     background-repeat: no-repeat;
     padding-top: 150px;
