@@ -1,6 +1,9 @@
 const express = require('express')
 const router = express.Router();
 const userModel = require('../model/User');
+const cart = require('../model/shoppingcart');
+
+const Cart = cart.Cart;
 
 router.get("/registration", (req, res) => {
 
@@ -159,6 +162,8 @@ router.post("/registration", (req, res) => {
                                 .then(() => {
 
                                     req.session.userInfo = user;
+
+                                    req.session.cart = new Cart();
 
                                     res.redirect("/dashboard");
                                 })
