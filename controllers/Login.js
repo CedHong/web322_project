@@ -83,6 +83,8 @@ router.post("/login", (req, res) => {
 
                                 req.session.cart = new Cart();
 
+                                req.session.save();
+
                                 res.redirect("/dashboard");
 
 
